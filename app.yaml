@@ -3,5 +3,5 @@ instance_class: F1
 
 handlers:
 - url: /.*
-  static_files: food-delivery-app.html
-  upload: food-delivery-app.html
+  static_files: index.html
+  upload: index.html

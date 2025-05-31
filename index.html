@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodieExpress - Đặt Đồ Ăn Online</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,10 +14,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
             min-height: 100vh;
         }
 
@@ -28,14 +29,15 @@
 
         /* Header */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: background 0.3s;
         }
 
         .nav {
@@ -45,81 +47,102 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff6f61;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 1.1rem;
+            transition: color 0.3s, transform 0.3s;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: #ff6f61;
+            transform: translateY(-2px);
         }
 
         .cart-btn {
-            background: #667eea;
+            background: #ff6f61;
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
             cursor: pointer;
             position: relative;
-            transition: transform 0.3s;
+            transition: transform 0.3s, background 0.3s;
+            font-weight: 600;
         }
 
         .cart-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            background: #e65b50;
         }
 
         .cart-count {
             position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff4757;
+            top: -10px;
+            right: -10px;
+            background: #333;
             color: white;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 0.8rem;
+            width: 24px;
+            height: 24px;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+        }
+
         /* Hero Section */
         .hero {
-            margin-top: 80px;
-            padding: 4rem 0;
+            margin-top: 100px;
+            padding: 6rem 0;
             text-align: center;
             color: white;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1513104890138-7c749659a680');
+            background-size: cover;
+            background-position: center;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             animation: fadeInUp 1s ease;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
             animation: fadeInUp 1s ease 0.2s both;
         }
 
         .search-box {
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
             position: relative;
             animation: fadeInUp 1s ease 0.4s both;
@@ -127,131 +150,184 @@
 
         .search-box input {
             width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
+            padding: 1.2rem 1.2rem 1.2rem 3.5rem;
             border: none;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             outline: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transition: box-shadow 0.3s;
+        }
+
+        .search-box input:focus {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
         .search-box i {
             position: absolute;
-            left: 1rem;
+            left: 1.2rem;
             top: 50%;
             transform: translateY(-50%);
             color: #666;
+            font-size: 1.2rem;
         }
 
         /* Categories */
         .categories {
-            padding: 4rem 0;
+            padding: 5rem 0;
             background: white;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 3.5rem;
             color: #333;
         }
 
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
         }
 
         .category-card {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            padding: 2rem;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.1);
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        .category-card:hover::before {
+            opacity: 1;
         }
 
         .category-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.05);
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
         .category-card i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
         }
 
         /* Menu */
         .menu {
-            padding: 4rem 0;
+            padding: 5rem 0;
             background: #f8f9fa;
         }
 
         .menu-filters {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
+            gap: 1.2rem;
+            margin-bottom: 3.5rem;
             flex-wrap: wrap;
         }
 
         .filter-btn {
             background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
+            border: 2px solid #ff6f61;
+            color: #ff6f61;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
             cursor: pointer;
+            font-weight: 600;
             transition: all 0.3s;
         }
 
         .filter-btn.active,
         .filter-btn:hover {
-            background: #667eea;
+            background: #ff6f61;
             color: white;
+            transform: translateY(-2px);
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
         .menu-item {
             background: white;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .menu-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
         .menu-item-image {
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 220px;
+            background: linear-gradient(135deg, #ff6f61 0%, #fda085 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 3.5rem;
+            position: relative;
+        }
+
+        .menu-item-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.1);
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        .menu-item:hover .menu-item-image::after {
+            opacity: 1;
         }
 
         .menu-item-content {
-            padding: 1.5rem;
+            padding: 1.8rem;
         }
 
         .menu-item h3 {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
             color: #333;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .menu-item p {
             color: #666;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
         }
 
         .menu-item-footer {
@@ -261,23 +337,25 @@
         }
 
         .price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ff6f61;
         }
 
         .add-to-cart {
-            background: #667eea;
+            background: #ff6f61;
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
             cursor: pointer;
-            transition: background 0.3s;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.3s;
         }
 
         .add-to-cart:hover {
-            background: #5a67d8;
+            background: #e65b50;
+            transform: translateY(-2px);
         }
 
         /* Cart Modal */
@@ -288,7 +366,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
             z-index: 2000;
         }
 
@@ -298,12 +376,13 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            max-width: 500px;
+            padding: 2.5rem;
+            border-radius: 15px;
+            max-width: 600px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
         .modal-header {
@@ -313,57 +392,106 @@
             margin-bottom: 2rem;
         }
 
+        .modal-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+        }
+
         .close-btn {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #ff6f61;
         }
 
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 1.2rem 0;
             border-bottom: 1px solid #eee;
+        }
+
+        .cart-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .cart-item p {
+            color: #666;
+            font-size: 0.95rem;
         }
 
         .cart-total {
             text-align: center;
             margin: 2rem 0;
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ff6f61;
         }
 
         .checkout-btn {
             width: 100%;
-            background: #667eea;
+            background: #ff6f61;
             color: white;
             border: none;
-            padding: 1rem;
+            padding: 1.2rem;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #e65b50;
+            transform: translateY(-2px);
         }
 
         /* Footer */
         .footer {
-            background: #333;
+            background: #2c2c2c;
             color: white;
             text-align: center;
-            padding: 3rem 0;
+            padding: 4rem 0;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #667eea;
+            margin-bottom: 1.2rem;
+            color: #ff6f61;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        .footer-section i {
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-section i:hover {
+            color: #ff6f61;
+            transform: translateY(-3px);
         }
 
         /* Animations */
@@ -382,14 +510,53 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             }
-            
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
             .hero h1 {
                 font-size: 2rem;
             }
-            
-            .menu-grid {
-                grid-template-columns: 1fr;
+
+            .search-box input {
+                padding: 1rem 1rem 1rem 3rem;
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
             }
         }
     </style>
@@ -398,13 +565,16 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav container">
-            <a href="#" class="logo">🍕 FoodieExpress</a>
-            <ul class="nav-links">
+            <a href="#" class="logo"><i class="fas fa-utensils"></i> FoodieExpress</a>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Trang chủ</a></li>
                 <li><a href="#categories">Danh mục</a></li>
                 <li><a href="#menu">Thực đơn</a></li>
                 <li><a href="#contact">Liên hệ</a></li>
             </ul>
+            <button class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
             <button class="cart-btn" onclick="openCart()">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count" id="cartCount">0</span>
@@ -415,8 +585,8 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Đặt đồ ăn ngon, giao tận nơi</h1>
-            <p>Hàng nghìn món ăn ngon từ các nhà hàng uy tín, giao hàng nhanh chóng</p>
+            <h1>Thưởng thức món ngon, giao tận cửa</h1>
+            <p>Khám phá hàng nghìn món ăn từ các nhà hàng uy tín, giao hàng siêu tốc</p>
             <div class="search-box">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Tìm món ăn, nhà hàng..." id="searchInput">
@@ -427,7 +597,7 @@
     <!-- Categories -->
     <section class="categories" id="categories">
         <div class="container">
-            <h2 class="section-title">Danh mục phổ biến</h2>
+            <h2 class="section-title">Danh mục nổi bật</h2>
             <div class="category-grid">
                 <div class="category-card" onclick="filterMenu('pizza')">
                     <i class="fas fa-pizza-slice"></i>
@@ -460,7 +630,7 @@
     <!-- Menu -->
     <section class="menu" id="menu">
         <div class="container">
-            <h2 class="section-title">Thực đơn hôm nay</h2>
+            <h2 class="section-title">Thực đơn hấp dẫn</h2>
             <div class="menu-filters">
                 <button class="filter-btn active" onclick="filterMenu('all')">Tất cả</button>
                 <button class="filter-btn" onclick="filterMenu('pizza')">Pizza</button>
@@ -480,7 +650,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Giỏ hàng của bạn</h2>
-                <button class="close-btn" onclick="closeCart()">&times;</button>
+                <button class="close-btn" onclick="closeCart()">×</button>
             </div>
             <div id="cartItems"></div>
             <div class="cart-total" id="cartTotal">Tổng: 0đ</div>
@@ -489,7 +659,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -510,7 +680,7 @@
                     </p>
                 </div>
             </div>
-            <p>&copy; 2025 FoodieExpress. Tất cả quyền được bảo lưu.</p>
+            <p>© 2025 FoodieExpress. Tất cả quyền được bảo lưu.</p>
         </div>
     </footer>
 
@@ -606,7 +776,28 @@
         document.addEventListener('DOMContentLoaded', function() {
             displayMenuItems(menuItems);
             setupSearch();
+            setupSmoothScroll();
         });
+
+        // Smooth scrolling for navigation links
+        function setupSmoothScroll() {
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                    if (window.innerWidth <= 768) {
+                        toggleMenu(); // Close menu on mobile after clicking
+                    }
+                });
+            });
+        }
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
 
         // Display menu items
         function displayMenuItems(items) {
@@ -707,7 +898,7 @@
             const cartTotal = document.getElementById('cartTotal');
 
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p style="text-align: center; color: #666;">Giỏ hàng trống</p>';
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: #666; font-size: 1rem;">Giỏ hàng trống</p>';
                 cartTotal.innerHTML = 'Tổng: 0đ';
                 return;
             }
@@ -723,11 +914,11 @@
                         <h4>${item.name}</h4>
                         <p>${formatPrice(item.price)} x ${item.quantity}</p>
                     </div>
-                    <div>
-                        <button onclick="changeQuantity(${index}, -1)" style="background: #f0f0f0; border: none; padding: 5px 10px; margin-right: 5px; border-radius: 5px;">-</button>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <button onclick="changeQuantity(${index}, -1)" style="background: #f0f0f0; border: none; padding: 8px 12px; border-radius: 50%; font-size: 1rem;">-</button>
                         <span>${item.quantity}</span>
-                        <button onclick="changeQuantity(${index}, 1)" style="background: #f0f0f0; border: none; padding: 5px 10px; margin-left: 5px; border-radius: 5px;">+</button>
-                        <button onclick="removeFromCart(${index})" style="background: #ff4757; color: white; border: none; padding: 5px 10px; margin-left: 10px; border-radius: 5px;">Xóa</button>
+                        <button onclick="changeQuantity(${index}, 1)" style="background: #f0f0f0; border: none; padding: 8px 12px; border-radius: 50%; font-size: 1rem;">+</button>
+                        <button onclick="removeFromCart(${index})" style="background: #ff4757; color: white; border: none; padding: 8px 12px; border-radius: 50%; font-size: 1rem;">Xóa</button>
                     </div>
                 `;
                 cartItemsContainer.appendChild(cartItem);
@@ -765,7 +956,6 @@
             const orderSummary = cart.map(item => `${item.name} x${item.quantity}`).join('\n');
             
             if (confirm(`Xác nhận đặt hàng?\n\n${orderSummary}\n\nTổng: ${formatPrice(total)}`)) {
-                // Here you would typically send the order to your backend
                 alert('Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm.');
                 cart = [];
                 updateCartCount();
@@ -783,19 +973,20 @@
 
         // Show notification
         function showNotification(message) {
-            // Simple notification - you can enhance this
             const notification = document.createElement('div');
             notification.textContent = message;
             notification.style.cssText = `
                 position: fixed;
-                top: 100px;
+                top: 120px;
                 right: 20px;
                 background: #4CAF50;
                 color: white;
-                padding: 15px 20px;
-                border-radius: 5px;
+                padding: 15px 25px;
+                border-radius: 8px;
                 z-index: 3000;
-                animation: slideIn 0.3s ease;
+                font-weight: 500;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
             `;
             
             document.body.appendChild(notification);
@@ -813,17 +1004,19 @@
             }
         }
 
-        // Add slide-in animation for notifications
+        // Add animations for notifications
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideIn {
                 from { transform: translateX(100%); opacity: 0; }
                 to { transform: translateX(0); opacity: 1; }
             }
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
         `;
         document.head.appendChild(style);
     </script>
-
-    <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siqc6a74e6766c5cd17570d75cc87458aaf5f8e5188f73326a53a492285fe152c13" defer></script>
 </body>
 </html>
